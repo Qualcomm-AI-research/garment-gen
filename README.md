@@ -63,6 +63,9 @@ See [`INSTALL.md`](INSTALL.md) for the complete, step-by-step guide — conda en
 PyTorch, NVIDIA Warp fork, GarmentCode/PyGarment, the SwiftTailor package, optional
 PyTorch3D, and downloading the model weights and evaluation data.
 
+Model weights are distributed via [GitHub Releases](https://github.com/Qualcomm-AI-research/SwiftTailor/releases/tag/v1.0.0)
+and fetched by `bash scripts/download_weights.sh` (see [Step 6 in `INSTALL.md`](INSTALL.md#step-6-download-weights-and-data)).
+
 ## 📁 Repository Structure
 
 ```

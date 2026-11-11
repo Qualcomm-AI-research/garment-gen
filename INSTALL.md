@@ -83,6 +83,17 @@ python -c "from swifttailor.patternmaker.st_model import SwiftTailorForCausalLM;
 bash scripts/download_weights.sh
 ```
 
+Expected layout:
+
+```
+weights/
+├── patternmaker/
+│   ├── config.json
+│   └── model.safetensors
+└── garmentsewer/
+    └── dpt.pt
+```
+
 ## Step 7: Install NVIDIA Warp (Optional)
 
 We can skip this if we do not need to reproduce PatternMaker + GarmentCode results. GarmentCode uses a custom fork of NVIDIA Warp with cloth simulation extensions.

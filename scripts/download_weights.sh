@@ -8,14 +8,21 @@
 set -euo pipefail
 
 WEIGHTS_DIR="weights"
-mkdir -p "$WEIGHTS_DIR/patternmaker" "$WEIGHTS_DIR/garmentsewer"
+RELEASE_URL="https://github.com/Qualcomm-AI-research/SwiftTailor/releases/download/v1.0.0"
 
-# --- PatternMaker weights ---
-# TODO: update here later
-
-
-# --- GarmentSewer weights ---
-# TODO: update here later
+# --- PatternMaker + GarmentSewer weights ---
+if [ -f "$WEIGHTS_DIR/patternmaker/model.safetensors" ] && [ -f "$WEIGHTS_DIR/garmentsewer/dpt.pt" ]; then
+    echo "SwiftTailor weights already exist. Skipping."
+else
+    echo "Downloading SwiftTailor weights (~8.6GB)..."
+    for part in weights.tar.part-0{0..4}; do
+        curl -fL --retry 3 -C - -o "$part" "$RELEASE_URL/$part"
+    done
+    echo "Extracting weights..."
+    cat weights.tar.part-* | tar -xf -
+    rm -f weights.tar.part-*
+    echo "Weights extracted to $WEIGHTS_DIR/"
+fi
 
 # --- Base InternVL3-2B tokenizer + source (required by PatternMaker) ---
 # Download the tokenizer and the InternVL source modules come from the base model.
