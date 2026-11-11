@@ -1,0 +1,3 @@
+_target_: swifttailor.data.datasets.panel_configs.StatsConfig
+scale: [24.4920733, 26.60402835]
+shift: [8.44428116, 16.84081321]

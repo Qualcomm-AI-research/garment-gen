@@ -1,0 +1,27 @@
+debug: false
+
+data:
+  type: swifttailor.garmentsewer.dataset.GarmentCodeDataset
+  kwargs:
+    version: v3_512
+    condition_version: v3_512_final
+    subset: 1
+    resolution: 512
+
+model:
+  type: swifttailor.garmentsewer.dpt.DPTGIM
+  kwargs:
+    config_path: configs/garmentsewer/vit_large_patch16_384.json
+    layers: 4
+    features: 256
+    pred_channels: 3
+    out_channels: [256, 512, 1024, 1024]
+    use_bn: false
+    use_clstoken: true
+    use_stitching_loss: true
+    stitching_loss_weight: 1000
+    use_normal_loss: true
+    normal_loss_weight: 0.01
+    use_boundary_loss: true
+    boundary_width: 5
+    boundary_loss_weight: 100

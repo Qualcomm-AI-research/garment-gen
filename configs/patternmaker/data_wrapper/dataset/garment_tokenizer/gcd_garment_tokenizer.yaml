@@ -1,0 +1,6 @@
+defaults:
+  - standardize: gcd_stats
+
+_target_: swifttailor.data.garment_tokenizers.gcd_garment_tokenizer.GCDGarmentTokenizer
+random_tag: false
+num_tags: 108

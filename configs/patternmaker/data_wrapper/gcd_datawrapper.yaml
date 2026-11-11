@@ -1,0 +1,7 @@
+_target_: swifttailor.data.data_wrappers.data_wrapper.DataWrapper
+_recursive_: false
+defaults:
+  - dataset: gcd_mm
+
+collate_fn: swifttailor.data.data_wrappers.collate_fns.collate_fn
+split_file: assets/data_configs/gcd_test_datasplit.json

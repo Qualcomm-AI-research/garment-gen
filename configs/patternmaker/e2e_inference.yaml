@@ -1,0 +1,37 @@
+# End-to-end SwiftTailor inference: text/image -> sewing pattern -> 3D mesh.
+# Reuses the PatternMaker model + garment-tokenizer configs, and adds the
+# Stage-1 input fields and Stage-2 (GarmentSewer) reconstruction settings.
+defaults:
+  - data_wrapper: gcd_datawrapper
+  - model: aipparel_model
+  - _self_
+
+# --- PatternMaker (Stage 1) weights ---
+# my_pretrained_path: fine-tuned SwiftTailor checkpoint (download via scripts/download_weights.sh)
+# llm_pretrained_path: base InternVL3-2B-Instruct model, used for tokenizer loading
+#   (weights/patternmaker holds only the fine-tuned weights, not the tokenizer/source)
+my_pretrained_path: weights/patternmaker
+llm_pretrained_path: cache/InternVL3-2B-Instruct
+pretrained_config: null
+precision: bf16
+conv_type: internvl2_5
+
+# --- Stage-1 input (set at least one) ---
+input_text: null
+input_image: null
+
+# --- Output ---
+# Specs go to <output_dir>/patternmaker/, meshes to <output_dir>/mesh/
+output_dir: output/e2e
+
+# --- GarmentSewer (Stage 2) ---
+gs_checkpoint: weights/garmentsewer/dpt.pt
+gs_config: configs/garmentsewer/dpt_v16.yaml
+gc_root: GarmentCode
+sim_config: configs/garmentcode/default_sim_props.yaml
+# null -> use boxmesh_prep.DEFAULT_RESOLUTION
+resolution: null
+
+hydra:
+  run:
+    dir: output/e2e

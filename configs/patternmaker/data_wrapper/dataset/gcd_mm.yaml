@@ -1,0 +1,26 @@
+defaults:
+  - garment_tokenizer: gcd_garment_tokenizer
+
+_target_: swifttailor.data.datasets.gcd_mm_dataset.GCDMM
+
+# Root dir for the test-set (no extra data/ subdirectory level)
+root_dir: data/test_set
+
+# captions.json lives next to each sample under root_dir (see INSTALL.md testset layout)
+caption_dir: ${.root_dir}
+
+# With sampling_rate=[1,0,0,0,0] (IMAGE only), editing data is never accessed,
+# but the dataset constructor still requires this argument.
+editing_dir: ${.root_dir}
+editing_flip_prob: 0.0
+
+# IMAGE only — inference from front-view render
+sampling_rate: [1, 0, 0, 0, 0]
+
+panel_classification: configs/panel_classes_garmentcodedata.json
+
+load_by_dataname: configs/testset_500samples_full_pipeline.txt
+
+image_size: 448
+max_num_patches: 12
+conv_template: internvl2_5

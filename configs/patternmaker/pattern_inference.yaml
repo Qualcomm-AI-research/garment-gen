@@ -1,0 +1,29 @@
+# PatternMaker-only inference: text/image -> sewing pattern.
+# Same Stage-1 model/tokenizer configs as e2e_inference.yaml, without the
+# Stage-2 (GarmentSewer) reconstruction settings.
+defaults:
+  - data_wrapper: gcd_datawrapper
+  - model: aipparel_model
+  - _self_
+
+# --- PatternMaker weights ---
+# my_pretrained_path: fine-tuned SwiftTailor checkpoint (download via scripts/download_weights.sh)
+# llm_pretrained_path: base InternVL3-2B-Instruct model, used for tokenizer loading
+#   (weights/patternmaker holds only the fine-tuned weights, not the tokenizer/source)
+my_pretrained_path: weights/patternmaker
+llm_pretrained_path: cache/InternVL3-2B-Instruct
+pretrained_config: null
+precision: bf16
+conv_type: internvl2_5
+
+# --- Input (set at least one) ---
+input_text: null
+input_image: null
+
+# --- Output ---
+# Specs go to <output_dir>/<name>/
+output_dir: output/patternmaker_generate
+
+hydra:
+  run:
+    dir: output/patternmaker_generate

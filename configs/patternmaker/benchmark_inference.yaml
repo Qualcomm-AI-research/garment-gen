@@ -1,0 +1,40 @@
+defaults:
+  - data_wrapper: gcd_datawrapper
+  - trainer: trainer
+  - experiment: experiment
+  - model: aipparel_model
+  - _self_
+
+experiment:
+  run_name: inference
+
+# Path to the converted SwiftTailor checkpoint (model.safetensors + config.json)
+# Download weights via scripts/download_weights.sh
+my_pretrained_path: weights/patternmaker
+
+# Path to the base InternVL3-2B-Instruct model for tokenizer loading.
+# weights/patternmaker holds only the fine-tuned weights (not the tokenizer/source);
+# the tokenizer comes from the base model, downloaded by scripts/download_weights.sh.
+llm_pretrained_path: cache/InternVL3-2B-Instruct
+
+resume_path: null
+log_folder: output/patternmaker
+
+sampling_type: image
+pretrained_config: null
+precision: bf16
+
+# Set to True to run generation; False would start training
+evaluate: true
+
+# When True, each generated pattern is simulated into a draped 3D mesh via
+# GarmentCode (scripts/run_garmentcode.py), retrying until a mesh is produced.
+convert_to_3d: false
+
+conv_type: internvl2_5
+from_start: false
+storage_dir: output/
+
+hydra:
+  run:
+    dir: output/patternmaker/
