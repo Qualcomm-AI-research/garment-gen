@@ -202,3 +202,7 @@ If you find SwiftTailor useful in your research, please cite:
     pages     = {27169-27178}
 }
 ```
+
+## 📄 License
+
+This repository is licensed under the [BSD-3-Clause-Clear License](https://spdx.org/licenses/BSD-3-Clause-Clear.html). See [LICENSE](LICENSE) for the full license text.
