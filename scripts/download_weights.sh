@@ -8,7 +8,7 @@
 set -euo pipefail
 
 WEIGHTS_DIR="weights"
-RELEASE_URL="https://github.com/Qualcomm-AI-research/SwiftTailor/releases/download/v1.0.0"
+RELEASE_URL="https://github.com/Qualcomm-AI-research/garment-gen/releases/download/v1.0.0"
 
 # --- PatternMaker + GarmentSewer weights ---
 if [ -f "$WEIGHTS_DIR/patternmaker/model.safetensors" ] && [ -f "$WEIGHTS_DIR/garmentsewer/dpt.pt" ]; then
